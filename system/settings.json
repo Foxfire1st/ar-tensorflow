@@ -1,0 +1,43 @@
+{
+  "version": 2,
+  "onboarding": {
+    "storage": {
+      "mode": "memory-repo"
+    },
+    "pathRules": {
+      "include": {
+        "paths": ["README.md", "*.md", "tensorflow/**", "tools/**", "ci/**"],
+        "fileTypes": [".md", ".py", ".cc", ".h", ".c", ".proto", ".bzl", ".bazel", ".build", "BUILD", "WORKSPACE", "MODULE.bazel"]
+      },
+      "exclude": {
+        "paths": [
+          "third_party/**",
+          "**/node_modules/**",
+          "**/vendor/**",
+          "**/dist/**",
+          "**/build/**",
+          "**/coverage/**",
+          "**/.cache/**",
+          "**/.pytest_cache/**",
+          "**/.venv/**",
+          "**/.idea/**",
+          "**/.vscode/**",
+          ".env",
+          ".env.*",
+          "**/generated/**",
+          "**/*.generated.*",
+          "**/target/**",
+          "**/*.Zone.Identifier",
+          "**/*:Zone.Identifier",
+          "**/opensource_only.files",
+          "**/*.textproto",
+          "**/*.lds"
+        ],
+        "fileTypes": [".png", ".jpg", ".zip", ".so", ".dll", ".dylib", ".pbtxt"]
+      }
+    }
+  },
+  "crossRepo": {
+    "allow": []
+  }
+}
