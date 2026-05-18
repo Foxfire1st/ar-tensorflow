@@ -8,8 +8,8 @@
 | onboardingRoute | `tensorflow/c/overview.md` |
 | parentOverview | [`overview.md`](../overview.md) |
 | lastUpdated | 2026-05-17T00:00 |
-| lastVerifiedCommitHash | |
-| lastVerifiedCommitDate | |
+| lastVerifiedCommitHash | 2020b5919c5b66b8672438bed85d0ca88d434438 |
+| lastVerifiedCommitDate | 2026-05-16 |
 
 ## What This Area Is
 

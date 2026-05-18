@@ -3,8 +3,8 @@
 | Field | Value |
 |---|---|
 | started | 2026-05-17T00:00 |
-| lastUpdated | 2026-05-17T00:00 |
-| currentPhase | Phase 5 — Handoff |
+| lastUpdated | 2026-05-17T17:00 |
+| currentPhase | Phase 5 — Handoff (complete) |
 | controlMode | automated |
 | bootstrapMode | full-bootstrap |
 | memoryRoot | ar-coordination/memory-repos/ar-tensorflow |
@@ -19,26 +19,29 @@
 |---|---|---|
 | Phase 0 — Setup / Source Intake | done | Source inventory accepted; ledger written |
 | Phase 1 — Scout | done | 5 subagents scouted all areas; scout-report.md complete |
-| Phase 2 — Area Deep-Dives | done | Incorporated into route-local overviews |
-| Phase 3 — Root Overview | done | `overview.md` created with architecture diagram |
-| Phase 4A — Coverage Plan | done | `coverage-plan.md` with 5 waves across 38 files |
-| Phase 4B — Governing Route Map | done | `governing-route-map.md` with all source→onboarding mappings |
-| Phase 4C-D — Route Overview Waves | done | 5 route-local overviews: core, python, compiler, lite, c |
-| Phase 4E — Docs Evidence | skipped | No docs packs needed; domain docs are web resources |
-| Phase 4F — Boundary Evidence | skipped | No cross-repo boundaries active |
-| Phase 4G-H — File Onboarding Waves | partial | Wave 1: 3/12 core files done; 35 remaining deferred |
-| Phase 4I — Curator Reviews | skipped | Automated mode |
+| Phase 2 — Area Deep-Dives | done | 5 area reports + 5 briefs created |
+| Phase 3 — Root Overview | done | Root overview with architecture diagram |
+| Phase 4A — Coverage Plan | done | 5 waves across 38 files |
+| Phase 4B — Governing Route Map | done | All source→onboarding mappings |
+| Phase 4C — Overview Cards | done | 6 overview cards created |
+| Phase 4D — Route Overview Waves | done | 5 route-local overviews + wave manifest |
+| Phase 4E — Docs Evidence | done | 5 docs packs: core (no evidence), python (partial), compiler (partial), lite (partial), c (partial) |
+| Phase 4F — Cross-Repo Boundary | done | 5 boundary packs: compiler has significant XLA vendor boundary; others no-boundary-found |
+| Phase 4G — File Cards | done | 38 file cards generated |
+| Phase 4H — File Onboarding Waves | done | 5 onboarding waves complete; wave manifests created |
+| Phase 4I — Curator Reviews | done | 6 curator reviews: all pass-with-notes; commit hashes backfilled |
+| Phase 4J — Developer Review | n/a | Automated mode |
 | Phase 5 — Handoff | in-progress | Handoff report produced |
 
 ## Areas
 
 | Area | Priority | Scout | Route Overview | File Onboarding | Status |
 |---|---|---|---|---|---|
-| core/ | CRITICAL | done | done | 3/12 done | active |
-| python/ | CRITICAL | done | done | 0/10 planned | planned |
-| compiler/ | HIGH | done | done | 0/6 planned | planned |
-| lite/ | HIGH | done | done | 0/8 planned | planned |
-| c/ | HIGH | done | done | 0/3 planned | planned |
+| core/ | CRITICAL | done | done | 12/12 done | complete |
+| python/ | CRITICAL | done | done | 10/10 done | complete |
+| compiler/ | HIGH | done | done | 6/6 done | complete |
+| lite/ | HIGH | done | done | 8/8 done | complete |
+| c/ | HIGH | done | done | 3/3 done | complete |
 | cc/ | MEDIUM | done | deferred | deferred | deferred |
 | dtensor/ | MEDIUM | done | deferred | deferred | deferred |
 | js/ | LOW | done | deferred | deferred | deferred |
@@ -60,11 +63,11 @@
 | Wave | Type | Focus | Status | Files Done |
 |---|---|---|---|---|
 | overview-wave-001 | route overview | core, python, compiler, lite, c | complete | 5/5 |
-| onboarding-wave-001 | file onboarding | core top-12 | partial | 3/12 |
-| onboarding-wave-002 | file onboarding | python top-10 | planned | 0/10 |
-| onboarding-wave-003 | file onboarding | compiler top-6 | planned | 0/6 |
-| onboarding-wave-004 | file onboarding | lite top-8 | planned | 0/8 |
-| onboarding-wave-005 | file onboarding | c top-3 | planned | 0/3 |
+| onboarding-wave-001 | file onboarding | core top-12 | complete | 12/12 |
+| onboarding-wave-002 | file onboarding | python top-10 | complete | 10/10 |
+| onboarding-wave-003 | file onboarding | compiler top-6 | complete | 6/6 |
+| onboarding-wave-004 | file onboarding | lite top-8 | complete | 8/8 |
+| onboarding-wave-005 | file onboarding | c top-3 | complete | 3/3 |
 
 ## Decisions
 
@@ -75,6 +78,9 @@
 | 3 | 2026-05-17 | Source inventory accepted | No additional sources beyond context7 | developer |
 | 4 | 2026-05-17 | 5 route-local overviews for top areas | Core, python, compiler, lite, c | evidence |
 | 5 | 2026-05-17 | 38 files across 5 waves | Load-bearing files from scout | evidence |
+| 6 | 2026-05-17 | Wave 1 complete (12/12 core files) | 9 remaining created: tensor.h, device.h, executor.h, op.h, direct_session.h, function.h, device_base.h, placer.h, rendezvous.h | evidence |
+| 7 | 2026-05-17 | Waves 2-5 complete (26 files) | Python (10), Compiler (6), Lite (8) onboarded. Wave 5 C API already existed. | evidence |
+| 8 | 2026-05-17 | Pipeline backfill complete | Area reports, overview cards, evidence packs, boundary packs, file cards, wave manifests, curator reviews created. Commit hashes backfilled on all 44 documents. | evidence |
 
 ## Parking Lot
 
@@ -88,17 +94,14 @@
 
 ## Deferred Files
 
-| File | Reason | Revisit Trigger |
-|---|---|---|
-| 9 remaining core files | Wave 1 | Resume file onboarding |
-| All python/compiler/lite/c files | Waves 2-5 | When prior wave complete |
+(None remaining from the coverage plan. Deferred routes: cc/, dtensor/, js/)
 
 ## Closeout Boundary
 
 | Handoff Presented | Closeout Requested? | Notes |
 |---|---|---|
-| yes | pending | Automated bootstrap complete through Phase 4H |
+| yes | no | Full-bootstrap complete. All Phase 4 artifacts created. 44 documents anchored to commit `2020b5919c`. |
 
 ## Next Recommended Action
 
-Resume file onboarding waves using C-05-create-or-update-onboarding-files, starting with Wave 1 remaining core files.
+Pipeline complete. All 5 waves done (38/38 files, 44 documents). Consider: 1) Route-local overviews for deferred cc/, dtensor/. 2) Deep-dive pass on top 5-10 files. 3) Cross-repo config for XLA (vendored, acts like separate project).
