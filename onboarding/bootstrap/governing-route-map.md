@@ -10,6 +10,9 @@ Generated: 2026-05-17 | Phase 4B
 | `tensorflow/core/` | `tensorflow/core/overview.md` | planned | [HIGH] | C++ runtime foundation |
 | `tensorflow/python/` | `tensorflow/python/overview.md` | planned | [HIGH] | Primary user API |
 | `tensorflow/compiler/` | `tensorflow/compiler/overview.md` | planned | [HIGH] | XLA JIT/AOT/MLIR |
+| `tensorflow/compiler/mlir/` | `tensorflow/compiler/mlir/overview.md` | created | [HIGH] | MLIR bridge, dialect, and lowering infrastructure |
+| `tensorflow/compiler/mlir/tf2xla/transforms/` | `tensorflow/compiler/mlir/tf2xla/transforms/overview.md` | created | [HIGH] | TF-to-XLA MLIR transform and legalization pass area |
+| `tensorflow/compiler/mlir/stablehlo/transforms/` | `tensorflow/compiler/mlir/stablehlo/transforms/overview.md` | created | [HIGH] | TF-to-StableHLO transform and legalization pass area |
 | `tensorflow/lite/` | `tensorflow/lite/overview.md` | planned | [HIGH] | Mobile/embedded runtime |
 | `tensorflow/c/` | `tensorflow/c/overview.md` | planned | [HIGH] | Stable C ABI |
 
@@ -62,6 +65,8 @@ Generated: 2026-05-17 | Phase 4B
 | `tensorflow/compiler/jit/xla_device.h` | `tensorflow/compiler/jit/xla_device.h.md` | 3 | planned |
 | `tensorflow/compiler/tf2xla/graph_compiler.h` | `tensorflow/compiler/tf2xla/graph_compiler.h.md` | 3 | planned |
 | `tensorflow/compiler/aot/compile.h` | `tensorflow/compiler/aot/compile.h.md` | 3 | planned |
+| `tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf_patterns.td` | `tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf_patterns.td.md` | 3A | created |
+| `tensorflow/compiler/mlir/stablehlo/transforms/legalize_tf_patterns.td` | `tensorflow/compiler/mlir/stablehlo/transforms/legalize_tf_patterns.td.md` | 3A | created |
 | `tensorflow/lite/core/interpreter.h` | `tensorflow/lite/core/interpreter.h.md` | 4 | planned |
 | `tensorflow/lite/core/subgraph.h` | `tensorflow/lite/core/subgraph.h.md` | 4 | planned |
 | `tensorflow/lite/core/model_builder.h` | `tensorflow/lite/core/model_builder.h.md` | 4 | planned |
@@ -73,3 +78,9 @@ Generated: 2026-05-17 | Phase 4B
 | `tensorflow/c/c_api.h` | `tensorflow/c/c_api.h.md` | 5 | planned |
 | `tensorflow/c/c_api.cc` | `tensorflow/c/c_api.cc.md` | 5 | planned |
 | `tensorflow/c/tf_tensor.h` | `tensorflow/c/tf_tensor.h.md` | 5 | planned |
+| `tensorflow/c/experimental/stream_executor/stream_executor.h` | `tensorflow/c/experimental/stream_executor/stream_executor.h.md` | 5A | created |
+| `tensorflow/c/experimental/stream_executor/stream_executor.cc` | `tensorflow/c/experimental/stream_executor/stream_executor.cc.md` | 5A | created |
+| `tensorflow/core/common_runtime/pluggable_device/pluggable_device.h` | `tensorflow/core/common_runtime/pluggable_device/pluggable_device.h.md` | 5A | created |
+| `tensorflow/core/common_runtime/pluggable_device/pluggable_device.cc` | `tensorflow/core/common_runtime/pluggable_device/pluggable_device.cc.md` | 5A | created |
+| `tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.h` | `tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.h.md` | 5A | created |
+| `tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc` | `tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc.md` | 5A | created |

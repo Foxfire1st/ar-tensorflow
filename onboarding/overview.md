@@ -5,9 +5,9 @@
 | repository | tensorflow |
 | doc_type | `repo-overview` |
 | sourceRoute | `tensorflow/` |
-| lastUpdated | 2026-05-17T00:00 |
-| lastVerifiedCommitHash | 2020b5919c5b66b8672438bed85d0ca88d434438 |
-| lastVerifiedCommitDate | 2026-05-16 |
+| lastUpdated | 2026-05-18T11:19:29+02:00 |
+| lastVerifiedCommitHash | 575e43785c913c58644408a5ef5a7ff32c9026f5 |
+| lastVerifiedCommitDate | 2026-05-17T20:03:29-07:00 |
 
 ## What This Repo Is
 
@@ -79,11 +79,11 @@ TensorFlow is an end-to-end open-source machine learning platform. It provides a
 
 | Area | Source Route | Tech | Purpose | Local Overview |
 |---|---|---|---|---|
-| Core Runtime | `tensorflow/core/` | C++ | Graph, execution, kernels, devices, distributed | planned |
-| Python API | `tensorflow/python/` | Python | User-facing API, Keras, eager, tf.function | planned |
-| Compiler | `tensorflow/compiler/` | C++/MLIR | XLA JIT/AOT/MLIR compilation pipelines | planned |
-| Lite | `tensorflow/lite/` | C/C++ | Mobile/embedded runtime, delegates | planned |
-| C API | `tensorflow/c/` | C | Stable language-agnostic bindings | planned |
+| Core Runtime | `tensorflow/core/` | C++ | Graph, execution, kernels, devices, distributed, pluggable devices | [`tensorflow/core/overview.md`](tensorflow/core/overview.md) |
+| Python API | `tensorflow/python/` | Python | User-facing API, Keras, eager, tf.function | [`tensorflow/python/overview.md`](tensorflow/python/overview.md) |
+| Compiler | `tensorflow/compiler/` | C++/MLIR | XLA JIT/AOT/MLIR compilation pipelines | [`tensorflow/compiler/overview.md`](tensorflow/compiler/overview.md) |
+| Lite | `tensorflow/lite/` | C/C++ | Mobile/embedded runtime, delegates | [`tensorflow/lite/overview.md`](tensorflow/lite/overview.md) |
+| C API | `tensorflow/c/` | C | Stable language-agnostic bindings plus experimental plugin C APIs | [`tensorflow/c/overview.md`](tensorflow/c/overview.md) |
 | C++ API | `tensorflow/cc/` | C++ | Modern C++ graph DSL | deferred |
 | DTensor | `tensorflow/dtensor/` | C++/Python/MLIR | Distributed tensor mesh sharding | deferred |
 | JS | `tensorflow/js/` | JS/TS | TF.js codegen bridge | deferred |
@@ -97,7 +97,7 @@ TensorFlow is an end-to-end open-source machine learning platform. It provides a
 
 ### Core Runtime (`tensorflow/core/`)
 
-The C++ foundation. Owns the computation Graph (DAG of Nodes), the Executor that runs it, the Session API that users interact with, the OpKernel framework for operation implementations, the Device abstraction for CPU/GPU/TPU placement, and the distributed runtime for multi-machine execution. The `framework/` subdirectory defines abstractions; `common_runtime/` implements execution; `kernels/` contains 1000+ concrete op implementations.
+The C++ foundation. Owns the computation Graph (DAG of Nodes), the Executor that runs it, the Session API that users interact with, the OpKernel framework for operation implementations, the Device abstraction for CPU/GPU/TPU placement, and the distributed runtime for multi-machine execution. The `framework/` subdirectory defines abstractions; `common_runtime/` implements execution; `kernels/` contains 1000+ concrete op implementations. `common_runtime/pluggable_device/` is the runtime extension path for hardware integrated through pluggable StreamExecutor platforms, including virtual-device memory and stream configuration.
 
 ### Python API (`tensorflow/python/`)
 
@@ -106,6 +106,10 @@ The primary developer surface. `framework/` provides Tensor, Graph, Operation, d
 ### Compiler (`tensorflow/compiler/`)
 
 Three compilation pathways: (1) **JIT** — runtime clustering of compatible ops, encapsulation into functions, then XLA compilation via `XlaCompiler`; (2) **AOT** — offline compilation to standalone object files via `tfcompile`; (3) **MLIR** — modern pathway converting TF SavedModel to StableHLO for cross-framework portability. The HLO IR and XLA backends live externally in `third_party/xla/xla/`.
+
+### C API (`tensorflow/c/`)
+
+The stable ABI layer for graph, session, tensor, and eager APIs, plus selected experimental C plugin surfaces. The experimental StreamExecutor API under `tensorflow/c/experimental/stream_executor/` lets pluggable device vendors register platform, device, stream, memory, event, and callback functions through `SP_*` structs that TensorFlow wraps into StreamExecutor implementations.
 
 ### Lite (`tensorflow/lite/`)
 
@@ -135,6 +139,7 @@ No cross-repo dependencies configured in `settings.json`. The HLO IR and XLA bac
 - Models for Lite are FlatBuffer-serialized; no Protobuf dependency at runtime
 - XLA compilation requires static shapes at compile time
 - Eager execution is the default in TF 2.x; graph mode is opt-in
+- Pluggable device virtual stream priority, when configured, flows from session device options into StreamExecutor stream creation; priority entries are only valid when aligned with virtual-device memory-limit entries
 
 ## Glossary Terms
 
@@ -166,11 +171,10 @@ No cross-repo dependencies configured in `settings.json`. The HLO IR and XLA bac
 
 | Priority | Area / Path | Why Next | Suggested Artifact |
 |---|---|---|---|
-| high | `tensorflow/core/` | Foundation of all execution | route-local overview |
-| high | `tensorflow/python/` | Primary user API | route-local overview |
-| high | `tensorflow/compiler/` | Performance-critical complexity | route-local overview |
-| high | `tensorflow/lite/` | Independent runtime ecosystem | route-local overview |
-| medium | `tensorflow/c/` | Stable ABI boundary | route-local overview |
+| high | `tensorflow/core/common_runtime/pluggable_device/` | Recently changed runtime extension point for pluggable hardware devices | child overview or targeted file onboarding |
+| high | `tensorflow/c/experimental/stream_executor/` | Experimental C plugin ABI used by pluggable StreamExecutor integration | child overview or targeted file onboarding |
+| high | `tensorflow/compiler/mlir/tf2xla/transforms/` | MLIR TF to XLA legalization surface with current file-level coverage | keep file onboarding current |
+| high | `tensorflow/compiler/mlir/stablehlo/transforms/` | StableHLO legalization surface with current file-level coverage | keep file onboarding current |
 | medium | `tensorflow/cc/` | C++ developer API | route-local overview |
 | medium | `tensorflow/dtensor/` | Distributed training mesh | route-local overview |
 
@@ -182,4 +186,5 @@ No cross-repo dependencies configured in `settings.json`. The HLO IR and XLA bac
 
 ## Update History
 
+- 2026-05-18: Refreshed root overview after drift in `tensorflow/c/` and `tensorflow/core/`; updated local overview links and pluggable device/StreamExecutor context
 - 2026-05-17: Initial root overview from full-bootstrap scout phase

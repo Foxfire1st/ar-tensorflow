@@ -12,9 +12,9 @@ Full-bootstrap coverage for tensorflow. Priorities driven by scout report: core,
 |---|---|---|---|---|---|
 | Core Runtime | `tensorflow/core/` | **yes** | top 10 files | no (domain docs only) | no (vendored xla) |
 | Python API | `tensorflow/python/` | **yes** | top 10 files | no (domain docs only) | no |
-| Compiler | `tensorflow/compiler/` | **yes** | top 6 files | no (domain docs only) | no (xla is vendored) |
+| Compiler | `tensorflow/compiler/` | **yes** | top 6 files + MLIR legalization expansion | no (domain docs only) | no (xla is vendored) |
 | Lite | `tensorflow/lite/` | **yes** | top 8 files | no (domain docs only) | no |
-| C API | `tensorflow/c/` | **yes** | top 3 files | no | no |
+| C API | `tensorflow/c/` | **yes** | top 3 files + StreamExecutor plugin expansion | no | no |
 | C++ API | `tensorflow/cc/` | deferred | deferred | no | no |
 | DTensor | `tensorflow/dtensor/` | deferred | deferred | no | no |
 | JS | `tensorflow/js/` | deferred | deferred | no | no |
@@ -78,6 +78,12 @@ Full-bootstrap coverage for tensorflow. Priorities driven by scout report: core,
 | `tensorflow/compiler/tf2xla/graph_compiler.h` | Graph→HLO lowering |
 | `tensorflow/compiler/aot/compile.h` | AOT compilation entry |
 
+### Wave 3A — MLIR legalization expansion
+| File | Reason |
+|---|---|
+| `tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf_patterns.td` | Declarative TF→StableHLO/CHLO legalization patterns generated into the TF2XLA legalization pass |
+| `tensorflow/compiler/mlir/stablehlo/transforms/legalize_tf_patterns.td` | Declarative TF→MHLO legalization patterns used by the StableHLO-oriented pass pipeline before StableHLO conversion |
+
 ### Wave 4 — Lite load-bearing files
 | File | Reason |
 |---|---|
@@ -96,6 +102,16 @@ Full-bootstrap coverage for tensorflow. Priorities driven by scout report: core,
 | `tensorflow/c/c_api.h` | Public C API surface |
 | `tensorflow/c/c_api.cc` | C API implementation |
 | `tensorflow/c/tf_tensor.h` | TF_Tensor type definition |
+
+### Wave 5A — Pluggable device stream priority expansion
+| File | Reason |
+|---|---|
+| `tensorflow/c/experimental/stream_executor/stream_executor.h` | Experimental StreamExecutor C ABI declares stream options and option-aware stream creation |
+| `tensorflow/c/experimental/stream_executor/stream_executor.cc` | C-to-StreamExecutor adapter forwards optional stream priority into plugin stream creation |
+| `tensorflow/core/common_runtime/pluggable_device/pluggable_device.h` | PluggableDevice lifecycle declaration accepts optional stream priority during initialization |
+| `tensorflow/core/common_runtime/pluggable_device/pluggable_device.cc` | PluggableDevice stream group creation applies optional priority to compute and copy streams |
+| `tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.h` | Factory declaration carries optional priority through private device creation |
+| `tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc` | Factory parses virtual-device priorities, validates priority shape, and creates executors before device descriptions |
 
 ## Docs Evidence
 

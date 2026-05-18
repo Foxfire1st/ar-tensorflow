@@ -6,8 +6,8 @@
 | doc_type | `route-local-overview` |
 | sourceRoute | `tensorflow/python/` |
 | onboardingRoute | `tensorflow/python/overview.md` |
-| parentOverview | [`overview.md`](../overview.md) |
-| lastUpdated | 2026-05-17T00:00 |
+| parentOverview | [`overview.md`](../../overview.md) |
+| lastUpdated | 2026-05-18T11:19:29+02:00 |
 | lastVerifiedCommitHash | 2020b5919c5b66b8672438bed85d0ca88d434438 |
 | lastVerifiedCommitDate | 2026-05-16 |
 
@@ -172,4 +172,5 @@ Candidates: `keras/`, `distribute/`, `data/`
 
 ## Update History
 
+- 2026-05-18: Corrected parent overview link after reference-health check; source verification unchanged
 - 2026-05-17: Initial route-local overview from full-bootstrap

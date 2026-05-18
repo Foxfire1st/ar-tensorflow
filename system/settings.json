@@ -7,7 +7,7 @@
     "pathRules": {
       "include": {
         "paths": ["README.md", "*.md", "tensorflow/**", "tools/**", "ci/**"],
-        "fileTypes": [".md", ".py", ".cc", ".h", ".c", ".proto", ".bzl", ".bazel", ".build", "BUILD", "WORKSPACE", "MODULE.bazel"]
+        "fileTypes": [".md", ".py", ".cc", ".h", ".c", ".proto", ".td", ".bzl", ".bazel", ".build", "BUILD", "WORKSPACE", "MODULE.bazel"]
       },
       "exclude": {
         "paths": [

@@ -6,10 +6,10 @@
 | doc_type | `route-local-overview` |
 | sourceRoute | `tensorflow/core/` |
 | onboardingRoute | `tensorflow/core/overview.md` |
-| parentOverview | [`overview.md`](../overview.md) |
-| lastUpdated | 2026-05-17T00:00 |
-| lastVerifiedCommitHash | 2020b5919c5b66b8672438bed85d0ca88d434438 |
-| lastVerifiedCommitDate | 2026-05-16 |
+| parentOverview | [`overview.md`](../../overview.md) |
+| lastUpdated | 2026-05-18T11:36:03+02:00 |
+| lastVerifiedCommitHash | 575e43785c913c58644408a5ef5a7ff32c9026f5 |
+| lastVerifiedCommitDate | 2026-05-17T20:03:29-07:00 |
 
 ## What This Area Is
 
@@ -24,6 +24,7 @@ This area is entirely C++, with a thin public API layer (`public/`). It is the f
 | `framework/` | Core abstractions: Tensor, OpKernel, Device, Op registry, shape inference, allocator, rendezvous |
 | `graph/` | Graph DAG construction, validation, optimization, partitioning |
 | `common_runtime/` | Execution engine: Executor, DirectSession, Placer, Grappler, device management |
+| `common_runtime/pluggable_device/` | StreamExecutor-backed pluggable hardware device factory, device lifecycle, allocators, contexts, virtual devices, and stream setup |
 | `kernels/` | 1000+ concrete operation implementations (math, NN, I/O, control flow) |
 | `ops/` | Op definitions and gradient registration |
 | `distributed_runtime/` | Multi-machine: Master, Worker, gRPC transport, graph distribution |
@@ -70,6 +71,9 @@ This area is entirely C++, with a thin public API layer (`public/`). It is the f
 | Placer | `common_runtime/placer.h` | Device placement algorithm |
 | Allocator | `framework/allocator.h` | Memory allocation interface; BFCAllocator for GPU |
 | FunctionLibraryRuntime | `framework/function.h` | tf.function execution, inlining, caching |
+| PluggableDevice | `common_runtime/pluggable_device/pluggable_device.h` | LocalDevice implementation for StreamExecutor-backed external hardware platforms |
+| PluggableDeviceFactory | `common_runtime/pluggable_device/pluggable_device_factory.h` | DeviceFactory that maps platform devices and virtual devices into TensorFlow devices |
+| TfDeviceSpec | `common_runtime/pluggable_device/pluggable_device_factory.cc` | Internal factory record carrying platform id, TF id, memory limit, and optional stream priority |
 
 ## Operating Model
 
@@ -93,6 +97,15 @@ This area is entirely C++, with a thin public API layer (`public/`). It is the f
 2. REGISTER_KERNEL_BUILDER maps (op_name, device_type) → OpKernel factory
 3. At execution, Executor looks up kernel factory, instantiates, caches in OpSegment
 
+### Pluggable Device Creation Flow
+
+1. `PluggableDeviceFactory::CreateDevices()` reads `SessionOptions.config.pluggable_device_options()`
+2. Virtual-device config is normalized into `TfDeviceSpec` records with platform device id, TF device id, memory limit, and optional priority
+3. Device-id mappings are registered before device objects are created
+4. Device locality lookup creates the platform executor before asking for the device description
+5. `CreatePluggableDevice()` builds the allocator-backed `PluggableDevice` and passes priority into `Init()`
+6. `PluggableDevice::Init()` creates compute, host-to-device, device-to-host, and device-to-device streams with the same optional priority
+
 ## Load-Bearing Files
 
 | File | Role | Why It Matters | Onboarding |
@@ -109,6 +122,9 @@ This area is entirely C++, with a thin public API layer (`public/`). It is the f
 | `framework/function.h` | Function runtime | tf.function execution | planned |
 | `common_runtime/placer.h` | Device placement | Node→device assignment | planned |
 | `framework/device_base.h` | Device base | Abstract device interface | planned |
+| `common_runtime/pluggable_device/pluggable_device.h` | Pluggable device object | External hardware device lifecycle and stream context | candidate |
+| `common_runtime/pluggable_device/pluggable_device.cc` | Pluggable device implementation | Stream group creation, allocators, sync, copy behavior | candidate |
+| `common_runtime/pluggable_device/pluggable_device_factory.cc` | Pluggable device factory | Virtual-device parsing, locality, executor ordering, priority propagation | candidate |
 
 ## Local Invariants And Traps
 
@@ -120,6 +136,9 @@ This area is entirely C++, with a thin public API layer (`public/`). It is the f
 - **Rendezvous deadlock risk** — two devices waiting on each other via Rendezvous hangs indefinitely
 - **AsyncOpKernel required for blocking ops** — synchronous OpKernel blocking will deadlock bounded thread pool
 - **Cross-device tensor copies** — automatic via Send/Recv ops, incurring latency and memory overhead
+- **Pluggable device virtual priorities are per virtual device** — priority entries must either be absent or match `memory_limit_mb` entry count
+- **Pluggable device ordinal remains unsupported in virtual-device config** — device ordinal settings still return Unimplemented for pluggable virtual devices
+- **Executor before description** — pluggable device locality now forces `ExecutorForDevice()` before `DescriptionForDevice()` so device metadata comes from an initialized executor path
 
 ## Repo-Internal References
 
@@ -130,6 +149,9 @@ This area is entirely C++, with a thin public API layer (`public/`). It is the f
 | Placer assigns nodes to devices; used by DirectSession after graph registration | Placer::Run(), called from DirectSession | `common_runtime/placer.h`, `common_runtime/direct_session.h` |
 | Rendezvous coordinates tensor passing between devices in same session | Rendezvous interface, instantiated in DirectSession | `framework/rendezvous.h`, `common_runtime/rendezvous_mgr.h` |
 | Device owns memory allocator, kernel registry, thread pool | Device interface, DeviceMgr manages set | `framework/device.h`, `common_runtime/device_mgr.h` |
+| PluggableDevice stream groups are created through StreamExecutor and share compute/copy stream setup per TF device id | `StreamGroupFactory::GetOrCreate()` calls `CreateStream(priority)` for compute, H2D, D2H, and D2D streams | `common_runtime/pluggable_device/pluggable_device.cc`, `tensorflow/c/experimental/stream_executor/stream_executor.cc` |
+| PluggableDeviceFactory carries virtual-device memory and optional priority through creation | `ExtractVirtualDevices()` returns `TfDeviceSpec`; `CreatePluggableDevice()` logs and forwards priority to `PluggableDevice::Init()` | `common_runtime/pluggable_device/pluggable_device_factory.cc`, `common_runtime/pluggable_device/pluggable_device.h` |
+| Device locality lookup depends on executor initialization before description lookup | `GetDeviceLocalities()` calls `ExecutorForDevice(...).status()` before `DescriptionForDevice()` | `common_runtime/pluggable_device/pluggable_device_factory.cc` |
 
 ## Cross-Repo References
 
@@ -162,10 +184,14 @@ This area is entirely C++, with a thin public API layer (`public/`). It is the f
 | `framework/rendezvous.h` | `framework/rendezvous.h.md` | planned | Tensor sync |
 | `framework/op.h` | `framework/op.h.md` | planned | Op registry |
 | `framework/function.h` | `framework/function.h.md` | planned | Function runtime |
+| `common_runtime/pluggable_device/pluggable_device.h` | `common_runtime/pluggable_device/pluggable_device.h.md` | exists | Pluggable device lifecycle and Init contract |
+| `common_runtime/pluggable_device/pluggable_device.cc` | `common_runtime/pluggable_device/pluggable_device.cc.md` | exists | Stream group creation and priority propagation |
+| `common_runtime/pluggable_device/pluggable_device_factory.h` | `common_runtime/pluggable_device/pluggable_device_factory.h.md` | exists | Factory declaration and priority-aware construction signature |
+| `common_runtime/pluggable_device/pluggable_device_factory.cc` | `common_runtime/pluggable_device/pluggable_device_factory.cc.md` | exists | Virtual-device parsing and executor/description ordering |
 
 ## Child Overviews
 
-None yet. Candidates: `kernels/`, `distributed_runtime/`, `grappler/`
+None yet. Candidates: `common_runtime/pluggable_device/`, `kernels/`, `distributed_runtime/`, `grappler/`
 
 ## How To Use This Area
 
@@ -174,6 +200,7 @@ None yet. Candidates: `kernels/`, `distributed_runtime/`, `grappler/`
 3. Read `common_runtime/direct_session.h` — local implementation
 4. Read `common_runtime/executor.h` — node dispatch
 5. Read `framework/rendezvous.h` — tensor synchronization
+6. For external hardware/plugin behavior, read `common_runtime/pluggable_device/pluggable_device_factory.cc` with `common_runtime/pluggable_device/pluggable_device.cc`
 
 ## Needs Verification
 
@@ -182,4 +209,6 @@ None yet. Candidates: `kernels/`, `distributed_runtime/`, `grappler/`
 
 ## Update History
 
+- 2026-05-18: Added file-level onboarding map entries for PluggableDevice and PluggableDeviceFactory files
+- 2026-05-18: Refreshed after pluggable device drift; added virtual-device priority and executor-before-description context
 - 2026-05-17: Initial route-local overview from full-bootstrap
