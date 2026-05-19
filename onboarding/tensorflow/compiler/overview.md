@@ -7,7 +7,7 @@
 | sourceRoute | `tensorflow/compiler/` |
 | onboardingRoute | `tensorflow/compiler/overview.md` |
 | parentOverview | [`overview.md`](../../overview.md) |
-| lastUpdated | 2026-05-18T11:19:29+02:00 |
+| lastUpdated | 2026-05-19T03:08:25+02:00 |
 | lastVerifiedCommitHash | 2020b5919c5b66b8672438bed85d0ca88d434438 |
 | lastVerifiedCommitDate | 2026-05-16 |
 
@@ -16,6 +16,10 @@
 The XLA (Accelerated Linear Algebra) compiler stack optimizes TensorFlow graphs for hardware-accelerated execution. It provides **three compilation pathways**: (1) **JIT** — runtime clustering of compatible ops, encapsulation into functions, then XLA compilation; (2) **AOT** — offline compilation to standalone object files via `tfcompile`; (3) **MLIR** — modern pathway converting TF SavedModel to StableHLO for cross-framework portability.
 
 This area is the TF-side bridge to XLA. The HLO IR and XLA backends (CPU/GPU/TPU code generation) live in `third_party/xla/xla/` (vendored). The compiler stack handles op clustering, graph legalization, control flow functionalization, and resource variable handling.
+
+## Hot Path Summary
+
+Use `tensorflow/compiler/mlir/` for MLIR op legalization and StableHLO/TF2XLA conversion; `legalize_tf_patterns.td`, `TF_CheckNumericsOp`, `XlaCompiler`, `XlaLaunch`, `MarkForCompilationPass`, and `tf.function(jit_compile=True)` are strong anchors. Use `tensorflow/compiler/jit/` for clustering/device compilation and `tensorflow/compiler/tf2xla/` for graph-to-HLO symbolic execution.
 
 ## What Belongs Here
 
@@ -152,5 +156,6 @@ Candidates: `jit/`, `mlir/`, `tf2xla/`
 
 ## Update History
 
+- 2026-05-19T03:08:25+02:00: Added hot path summary for generated route-index discovery hints.
 - 2026-05-18: Corrected parent overview link after reference-health check; source verification unchanged
 - 2026-05-17: Initial route-local overview from full-bootstrap

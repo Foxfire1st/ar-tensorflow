@@ -7,7 +7,7 @@
 | sourceRoute | `tensorflow/core/` |
 | onboardingRoute | `tensorflow/core/overview.md` |
 | parentOverview | [`overview.md`](../../overview.md) |
-| lastUpdated | 2026-05-18T11:36:03+02:00 |
+| lastUpdated | 2026-05-19T03:08:25+02:00 |
 | lastVerifiedCommitHash | 575e43785c913c58644408a5ef5a7ff32c9026f5 |
 | lastVerifiedCommitDate | 2026-05-17T20:03:29-07:00 |
 
@@ -16,6 +16,10 @@
 The C++ runtime core is the engine that powers all graph computation, distributed execution, and hardware acceleration in TensorFlow. It contains the fundamental abstractions (Graph, Tensor, OpKernel, Device) and the execution machinery (Session, Executor, Rendezvous, Placer) that orchestrate computation across single and multi-machine deployments.
 
 This area is entirely C++, with a thin public API layer (`public/`). It is the foundation upon which all TensorFlow APIs (Python, C, C++, Java, Go, JavaScript) are built. The core owns the contract for operation implementations (OpKernel), device placement logic, memory management, tensor flow synchronization, and the distributed Master/Worker runtime.
+
+## Hot Path Summary
+
+Use this route for graph execution, `Executor`, `DirectSession`, `OpKernel`, `Device`, `Rendezvous`, `Placer`, allocator, and pluggable-device runtime behavior. For XLA compilation semantics, prefer `tensorflow/compiler/`; use core only when the question reaches runtime dispatch, graph execution, or device integration.
 
 ## What Belongs Here
 
@@ -209,6 +213,7 @@ None yet. Candidates: `common_runtime/pluggable_device/`, `kernels/`, `distribut
 
 ## Update History
 
+- 2026-05-19T03:08:25+02:00: Added hot path summary for generated route-index discovery hints.
 - 2026-05-18: Added file-level onboarding map entries for PluggableDevice and PluggableDeviceFactory files
 - 2026-05-18: Refreshed after pluggable device drift; added virtual-device priority and executor-before-description context
 - 2026-05-17: Initial route-local overview from full-bootstrap

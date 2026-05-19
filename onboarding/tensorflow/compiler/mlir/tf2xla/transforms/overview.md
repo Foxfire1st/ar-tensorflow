@@ -7,7 +7,7 @@
 | sourceRoute | `tensorflow/compiler/mlir/tf2xla/transforms/` |
 | onboardingRoute | `tensorflow/compiler/mlir/tf2xla/transforms/overview.md` |
 | parentOverview | [`tensorflow/compiler/mlir/overview.md`](../../overview.md) |
-| lastUpdated | 2026-05-18T11:02 |
+| lastUpdated | 2026-05-19T03:08:25+02:00 |
 | lastVerifiedCommitHash | `9634bd27f2f19fb7c42e8741a899dd27468a7571` |
 | lastVerifiedCommitDate | 2026-04-25T02:28:39-07:00 |
 
@@ -17,6 +17,10 @@ MLIR transform and legalization code for TensorFlow-to-XLA bridge paths. This
 route contains TableGen rewrite definitions, generated pass declarations, C++
 pass implementations, target legality helpers, tests, and fallback bridges to
 classic TF2XLA lowering.
+
+## Hot Path Summary
+
+Use this route for TensorFlow dialect to XLA/HLO legalization. Strong anchors are `legalize_tf_patterns.td`, `TF_CheckNumericsOp`, `legalization_op_config.cc`, `legalize_tf.cc`, `generated_legalize_tf.inc`, `xla_legalize_tf.cc`, and `tf2xla_rewriter.cc`.
 
 ## What Belongs Here
 
@@ -139,4 +143,5 @@ None.
 
 ## Update History
 
+- 2026-05-19T03:08:25+02:00: Added hot path summary for generated route-index discovery hints.
 - 2026-05-18T11:02: Added targeted route overview for MLIR TF2XLA transform coverage.

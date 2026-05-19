@@ -7,13 +7,17 @@
 | sourceRoute | `tensorflow/c/` |
 | onboardingRoute | `tensorflow/c/overview.md` |
 | parentOverview | [`overview.md`](../../overview.md) |
-| lastUpdated | 2026-05-18T11:36:03+02:00 |
+| lastUpdated | 2026-05-19T03:08:25+02:00 |
 | lastVerifiedCommitHash | 72ec73a31c7094d6a0353690fb583efd70d74e60 |
 | lastVerifiedCommitDate | 2026-05-17T18:09:55-07:00 |
 
 ## What This Area Is
 
 The stable, language-agnostic C API for TensorFlow. This is the **canonical ABI boundary** — all other language bindings (Python via `pywrap`, C++, Go, Java, Rust) ultimately go through this C interface. Provides opaque `TF_*` handles for graph construction, session management, tensor manipulation, and eager execution. Memory management is explicit — all handles must be freed with `TF_Delete*` functions. Internal C++ exceptions are caught and exposed as `TF_Status` error codes.
+
+## Hot Path Summary
+
+Use this route for stable C ABI behavior around `c_api.h`, `c_api.cc`, `TF_Graph`, `TF_Session`, `TF_Tensor`, `TF_Status`, and eager `TFE_*` handles. For plugin stream behavior, narrow to `experimental/stream_executor/stream_executor.h`, `SP_StreamOptions`, `SP_StreamExecutor`, and `stream_executor.cc`.
 
 ## What Belongs Here
 
@@ -149,6 +153,7 @@ None.
 
 ## Update History
 
+- 2026-05-19T03:08:25+02:00: Added hot path summary for generated route-index discovery hints.
 - 2026-05-18: Added file-level onboarding map entries for experimental StreamExecutor header and adapter files
 - 2026-05-18: Refreshed after StreamExecutor C API drift; added experimental stream option and pluggable device bridge context
 - 2026-05-17: Initial route-local overview from full-bootstrap

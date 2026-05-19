@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "kind": "agents-remember-route-index",
+  "repository": "tensorflow",
+  "route": "tensorflow/compiler/mlir/stablehlo/transforms",
+  "overview": "tensorflow/compiler/mlir/stablehlo/transforms/overview.md",
+  "index": "tensorflow/compiler/mlir/stablehlo/transforms/overview.index.json",
+  "sourceScope": [
+    "tensorflow/compiler/mlir/stablehlo/transforms/**"
+  ],
+  "childRoutes": [],
+  "coveredFiles": [
+    "tensorflow/compiler/mlir/stablehlo/transforms/legalize_tf_patterns.td"
+  ],
+  "coverageCounts": {
+    "sourceFilesInScope": 19,
+    "fileSidecars": 1,
+    "childRoutes": 0
+  },
+  "routingTerms": [
+    "compiler",
+    "legalize",
+    "legalize_tf_patterns",
+    "mlir",
+    "patterns",
+    "stablehlo",
+    "tensorflow",
+    "transforms"
+  ],
+  "hotPath": {
+    "summary": "Use this route for StableHLO-oriented TensorFlow legalization and export pipeline behavior. Strong anchors are `legalize_tf_patterns.td`, `TF_CheckNumericsOp`, `tf_stablehlo_pass.cc`, `legalize_tf.cc`, `generated_legalize_tf.inc`, and `legalize_tf_xla_call_module_to_stablehlo_pass`.",
+    "candidateHints": [
+      "tensorflow/compiler/mlir/stablehlo/transforms",
+      "tensorflow/compiler/mlir/stablehlo/transforms/legalize_tf_patterns.td"
+    ],
+    "anchorHints": [
+      "legalize_tf_patterns.td",
+      "legalize_tf_patterns",
+      "TF_CheckNumericsOp",
+      "tf_stablehlo_pass.cc",
+      "legalize_tf.cc",
+      "generated_legalize_tf.inc",
+      "legalize_tf_xla_call_module_to_stablehlo_pass",
+      "StableHLO",
+      "TensorFlow",
+      "tf_stablehlo_pass",
+      "legalize_tf",
+      "generated_legalize_tf",
+      "route-local-overview",
+      "tensorflow/compiler/mlir/stablehlo/transforms/",
+      "tensorflow/compiler/mlir/stablehlo/transforms/overview.md",
+      "tensorflow/compiler/mlir/overview.md",
+      "0c5506a91576d768dff8dd522d9b5240e64d2666",
+      "legalize_tf_xla_call_module_to_stablehlo_pass.*",
+      "fold_broadcast_pass.*",
+      "utils.*",
+      "tensorflow/compiler/mlir/tf2xla/transforms/",
+      "tensorflow/compiler/mlir/tensorflow_to_stablehlo/",
+      "tensorflow/compiler/mlir/lite/stablehlo/",
+      "stablehlo/BUILD",
+      "transforms/generated_legalize_tf.inc",
+      "transforms/legalize_tf_patterns.td",
+      "tf_stablehlo",
+      "BUILD",
+      "/BUILD",
+      "RewritePattern",
+      "tensorflow/compiler/mlir/stablehlo/transforms/legalize_tf_patterns.td",
+      "legalize_tf_patterns.td.md",
+      "td",
+      "tensorflow_to_stablehlo/",
+      "/../overview.md",
+      "tensorflow/compiler/mlir/stablehlo/transforms/tf_stablehlo_pass.cc",
+      "/../../../../../../../../tensorflow/tensorflow/compiler/mlir/stablehlo/transforms/tf_stablehlo_pass.cc",
+      "openxla.org",
+      "MLIR",
+      "doc_type",
+      "sourceRoute",
+      "onboardingRoute",
+      "parentOverview",
+      "lastUpdated",
+      "T03",
+      "lastVerifiedCommitHash",
+      "c5506a91576d768dff8dd522d9b5240e64d2666",
+      "lastVerifiedCommitDate"
+    ]
+  },
+  "fallback": {
+    "governingOverview": "tensorflow/compiler/mlir/stablehlo/transforms/overview.md",
+    "sidecarAbsence": "inferFromCoveredFiles"
+  }
+}

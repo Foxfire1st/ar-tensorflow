@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "kind": "agents-remember-route-index",
+  "repository": "tensorflow",
+  "route": "tensorflow/compiler/mlir/tf2xla/transforms",
+  "overview": "tensorflow/compiler/mlir/tf2xla/transforms/overview.md",
+  "index": "tensorflow/compiler/mlir/tf2xla/transforms/overview.index.json",
+  "sourceScope": [
+    "tensorflow/compiler/mlir/tf2xla/transforms/**"
+  ],
+  "childRoutes": [],
+  "coveredFiles": [
+    "tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf_patterns.td"
+  ],
+  "coverageCounts": {
+    "sourceFilesInScope": 32,
+    "fileSidecars": 1,
+    "childRoutes": 0
+  },
+  "routingTerms": [
+    "compiler",
+    "legalize",
+    "legalize_tf_patterns",
+    "mlir",
+    "patterns",
+    "tensorflow",
+    "tf2xla",
+    "transforms"
+  ],
+  "hotPath": {
+    "summary": "Use this route for TensorFlow dialect to XLA/HLO legalization. Strong anchors are `legalize_tf_patterns.td`, `TF_CheckNumericsOp`, `legalization_op_config.cc`, `legalize_tf.cc`, `generated_legalize_tf.inc`, `xla_legalize_tf.cc`, and `tf2xla_rewriter.cc`.",
+    "candidateHints": [
+      "tensorflow/compiler/mlir/tf2xla/transforms",
+      "tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf_patterns.td"
+    ],
+    "anchorHints": [
+      "legalize_tf_patterns.td",
+      "legalize_tf_patterns",
+      "TF_CheckNumericsOp",
+      "legalization_op_config.cc",
+      "legalize_tf.cc",
+      "generated_legalize_tf.inc",
+      "xla_legalize_tf.cc",
+      "tf2xla_rewriter.cc",
+      "TensorFlow",
+      "XLA",
+      "HLO",
+      "legalization_op_config",
+      "legalize_tf",
+      "generated_legalize_tf",
+      "xla_legalize_tf",
+      "tf2xla_rewriter",
+      "route-local-overview",
+      "tensorflow/compiler/mlir/tf2xla/transforms/",
+      "tensorflow/compiler/mlir/tf2xla/transforms/overview.md",
+      "tensorflow/compiler/mlir/overview.md",
+      "9634bd27f2f19fb7c42e8741a899dd27468a7571",
+      "mlir-tblgen",
+      "xla_legalize_tf_passes.td",
+      "legalize_tf_with_tf2xla.cc",
+      "tf2xla_rewriter.*",
+      "verify_tfxla_legalization.*",
+      "XlaCompiler",
+      "tensorflow/compiler/tf2xla/",
+      "tensorflow/compiler/jit/",
+      "tensorflow/compiler/mlir/tf2xla/internal/",
+      "tensorflow/compiler/mlir/stablehlo/",
+      "tensorflow/compiler/mlir/tensorflow_to_stablehlo/",
+      "BUILD",
+      "td",
+      "gentbl_cc_library",
+      "Pat",
+      "legalize_tf_patterns_inc_gen",
+      "mlir-tblgen -gen-rewriters",
+      "-gen-rewriters",
+      "RewritePattern",
+      "tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf_patterns.td",
+      "legalize_tf_patterns.td.md",
+      "/../overview.md",
+      "tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf.cc",
+      "/../../../../../../../../tensorflow/tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf.cc",
+      "TF2XLA",
+      "MLIR",
+      "doc_type"
+    ]
+  },
+  "fallback": {
+    "governingOverview": "tensorflow/compiler/mlir/tf2xla/transforms/overview.md",
+    "sidecarAbsence": "inferFromCoveredFiles"
+  }
+}

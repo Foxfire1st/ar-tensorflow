@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "kind": "agents-remember-route-index",
+  "repository": "tensorflow",
+  "route": "tensorflow/c",
+  "overview": "tensorflow/c/overview.md",
+  "index": "tensorflow/c/overview.index.json",
+  "sourceScope": [
+    "tensorflow/c/**"
+  ],
+  "childRoutes": [],
+  "coveredFiles": [
+    "tensorflow/c/c_api.cc",
+    "tensorflow/c/c_api.h",
+    "tensorflow/c/experimental/stream_executor/stream_executor.cc",
+    "tensorflow/c/experimental/stream_executor/stream_executor.h",
+    "tensorflow/c/tf_tensor.h"
+  ],
+  "coverageCounts": {
+    "sourceFilesInScope": 400,
+    "fileSidecars": 5,
+    "childRoutes": 0
+  },
+  "routingTerms": [
+    "api",
+    "c_api",
+    "executor",
+    "experimental",
+    "stream",
+    "stream_executor",
+    "tensor",
+    "tensorflow",
+    "tf_tensor"
+  ],
+  "hotPath": {
+    "summary": "Use this route for stable C ABI behavior around `c_api.h`, `c_api.cc`, `TF_Graph`, `TF_Session`, `TF_Tensor`, `TF_Status`, and eager `TFE_*` handles. For plugin stream behavior, narrow to `experimental/stream_executor/stream_executor.h`, `SP_StreamOptions`, `SP_StreamExecutor`, and `stream_executor.cc`.",
+    "candidateHints": [
+      "tensorflow/c",
+      "tensorflow/c/c_api.cc",
+      "tensorflow/c/c_api.h",
+      "tensorflow/c/experimental/stream_executor",
+      "tensorflow/c/experimental/stream_executor/stream_executor.cc",
+      "tensorflow/c/experimental/stream_executor/stream_executor.h",
+      "tensorflow/c/tf_tensor.h"
+    ],
+    "anchorHints": [
+      "c_api.cc",
+      "c_api",
+      "c_api.h",
+      "stream_executor.cc",
+      "stream_executor",
+      "stream_executor.h",
+      "tf_tensor.h",
+      "tf_tensor",
+      "TF_Graph",
+      "TF_Session",
+      "TF_Status",
+      "TFE_*",
+      "experimental/stream_executor/stream_executor.h",
+      "SP_StreamOptions",
+      "SP_StreamExecutor",
+      "ABI",
+      "TFE_",
+      "route-local-overview",
+      "tensorflow/c/",
+      "tensorflow/c/overview.md",
+      "overview.md",
+      "pywrap",
+      "TF_*",
+      "TF_Delete*",
+      "c_api_experimental.h",
+      "version.h",
+      "eager/",
+      "experimental/stream_executor/",
+      "tensorflow/core/",
+      "tensorflow/cc/",
+      "tensorflow/python/",
+      "tensorflow/go/",
+      "java/",
+      "js/",
+      "TF_New*",
+      "SP_*",
+      "struct_size",
+      "experimental/stream_executor/stream_executor.cc",
+      "SP_StreamOptions.has_priority",
+      "priority",
+      "tensorflow/core/public/session.h",
+      "tensorflow/core/graph/graph.h",
+      "pywrap_tf_session.py",
+      "tf_session_wrapper.cc",
+      "tensorflow/c/c_api.h",
+      "tensorflow/python/client/pywrap_tf_session.py",
+      "tensorflow/python/client/tf_session_wrapper.cc",
+      "tensorflow/cc/client/client_session.h"
+    ]
+  },
+  "fallback": {
+    "governingOverview": "tensorflow/c/overview.md",
+    "sidecarAbsence": "inferFromCoveredFiles"
+  }
+}

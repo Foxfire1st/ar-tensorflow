@@ -7,7 +7,7 @@
 | sourceRoute | `tensorflow/compiler/mlir/stablehlo/transforms/` |
 | onboardingRoute | `tensorflow/compiler/mlir/stablehlo/transforms/overview.md` |
 | parentOverview | [`tensorflow/compiler/mlir/overview.md`](../../overview.md) |
-| lastUpdated | 2026-05-18T11:02 |
+| lastUpdated | 2026-05-19T03:08:25+02:00 |
 | lastVerifiedCommitHash | `0c5506a91576d768dff8dd522d9b5240e64d2666` |
 | lastVerifiedCommitDate | 2026-03-16T18:23:06-07:00 |
 
@@ -17,6 +17,10 @@ StableHLO-oriented MLIR transformation code. This route contains rewrite
 patterns and pass implementations that lower TensorFlow dialect operations
 toward MHLO/StableHLO, fold broadcasts, legalize TF XlaCallModule operations,
 and assemble the TensorFlow-to-StableHLO pass pipeline.
+
+## Hot Path Summary
+
+Use this route for StableHLO-oriented TensorFlow legalization and export pipeline behavior. Strong anchors are `legalize_tf_patterns.td`, `TF_CheckNumericsOp`, `tf_stablehlo_pass.cc`, `legalize_tf.cc`, `generated_legalize_tf.inc`, and `legalize_tf_xla_call_module_to_stablehlo_pass`.
 
 ## What Belongs Here
 
@@ -135,4 +139,5 @@ None.
 
 ## Update History
 
+- 2026-05-19T03:08:25+02:00: Added hot path summary for generated route-index discovery hints.
 - 2026-05-18T11:02: Added targeted route overview for StableHLO transform coverage.

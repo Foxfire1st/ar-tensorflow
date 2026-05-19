@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "kind": "agents-remember-route-index",
+  "repository": "tensorflow",
+  "route": "",
+  "overview": "overview.md",
+  "index": "overview.index.json",
+  "sourceScope": [
+    "**"
+  ],
+  "childRoutes": [
+    {
+      "route": "tensorflow/c",
+      "overview": "tensorflow/c/overview.md",
+      "index": "tensorflow/c/overview.index.json"
+    },
+    {
+      "route": "tensorflow/compiler",
+      "overview": "tensorflow/compiler/overview.md",
+      "index": "tensorflow/compiler/overview.index.json"
+    },
+    {
+      "route": "tensorflow/core",
+      "overview": "tensorflow/core/overview.md",
+      "index": "tensorflow/core/overview.index.json"
+    },
+    {
+      "route": "tensorflow/lite",
+      "overview": "tensorflow/lite/overview.md",
+      "index": "tensorflow/lite/overview.index.json"
+    },
+    {
+      "route": "tensorflow/python",
+      "overview": "tensorflow/python/overview.md",
+      "index": "tensorflow/python/overview.index.json"
+    }
+  ],
+  "coveredFiles": [],
+  "coverageCounts": {
+    "sourceFilesInScope": 36306,
+    "fileSidecars": 0,
+    "childRoutes": 5
+  },
+  "routingTerms": [
+    "compiler",
+    "core",
+    "lite",
+    "python",
+    "tensorflow"
+  ],
+  "hotPath": {
+    "summary": "Use `tensorflow/compiler/` for XLA, JIT, AOT, and MLIR compilation tasks; op-legalization questions usually narrow to `tensorflow/compiler/mlir/`, `tf2xla/transforms/legalize_tf_patterns.td`, or `stablehlo/transforms/legalize_tf_patterns.td`. Use `tensorflow/python/eager/def_function.py` for `tf.function(jit_compile=True)` frontend questions and `tensorflow/core/` for runtime execution. **Core responsibilities:** - Graph-based computation engine with eager and graph execution modes - Automatic differentiation for training - XLA (Accelerated Linear Algebra) compiler for hardware-optimized ex...",
+    "candidateHints": [
+      "tensorflow/c",
+      "tensorflow/compiler",
+      "tensorflow/core",
+      "tensorflow/lite",
+      "tensorflow/python"
+    ],
+    "anchorHints": [
+      "c",
+      "compiler",
+      "core",
+      "lite",
+      "python",
+      "tensorflow/compiler/",
+      "tensorflow/compiler/mlir/",
+      "tf2xla/transforms/legalize_tf_patterns.td",
+      "stablehlo/transforms/legalize_tf_patterns.td",
+      "tensorflow/python/eager/def_function.py",
+      "tf.function(jit_compile=True",
+      "tensorflow/core/",
+      "tf.function",
+      "XLA",
+      "JIT",
+      "AOT",
+      "MLIR",
+      "tf2xla",
+      "legalize_tf_patterns",
+      "def_function",
+      "jit_compile",
+      "repo-overview",
+      "tensorflow/",
+      "tensorflow/core/overview.md",
+      "tensorflow/python/",
+      "tensorflow/python/overview.md",
+      "tensorflow/compiler/overview.md",
+      "tensorflow/lite/",
+      "tensorflow/lite/overview.md",
+      "tensorflow/c/",
+      "tensorflow/c/overview.md",
+      "tensorflow/cc/",
+      "tensorflow/dtensor/",
+      "tensorflow/js/",
+      "tensorflow/go/",
+      "tensorflow/java/",
+      "tensorflow/security/",
+      "tensorflow/tools/",
+      "WORKSPACE",
+      "MODULE.bazel",
+      "configure.py",
+      "framework/",
+      "common_runtime/",
+      "kernels/",
+      "common_runtime/pluggable_device/",
+      "eager/",
+      "GradientTape",
+      "ops/"
+    ]
+  },
+  "fallback": {
+    "governingOverview": "overview.md",
+    "sidecarAbsence": "inferFromCoveredFiles"
+  }
+}

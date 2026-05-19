@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "kind": "agents-remember-route-index",
+  "repository": "tensorflow",
+  "route": "tensorflow/compiler/mlir",
+  "overview": "tensorflow/compiler/mlir/overview.md",
+  "index": "tensorflow/compiler/mlir/overview.index.json",
+  "sourceScope": [
+    "tensorflow/compiler/mlir/**"
+  ],
+  "childRoutes": [
+    {
+      "route": "tensorflow/compiler/mlir/stablehlo/transforms",
+      "overview": "tensorflow/compiler/mlir/stablehlo/transforms/overview.md",
+      "index": "tensorflow/compiler/mlir/stablehlo/transforms/overview.index.json"
+    },
+    {
+      "route": "tensorflow/compiler/mlir/tf2xla/transforms",
+      "overview": "tensorflow/compiler/mlir/tf2xla/transforms/overview.md",
+      "index": "tensorflow/compiler/mlir/tf2xla/transforms/overview.index.json"
+    }
+  ],
+  "coveredFiles": [],
+  "coverageCounts": {
+    "sourceFilesInScope": 2793,
+    "fileSidecars": 0,
+    "childRoutes": 2
+  },
+  "routingTerms": [
+    "compiler",
+    "mlir",
+    "stablehlo",
+    "tensorflow",
+    "tf2xla",
+    "transforms"
+  ],
+  "hotPath": {
+    "summary": "Use `tf2xla/transforms/` for TensorFlow dialect to XLA/HLO legalization and `stablehlo/transforms/` for StableHLO-oriented legalization/export. Strong anchors are `legalize_tf_patterns.td`, `TF_CheckNumericsOp`, `generated_legalize_tf.inc`, `legalize_tf.cc`, and `tf_stablehlo_pass.cc`.",
+    "candidateHints": [
+      "tensorflow/compiler/mlir",
+      "tensorflow/compiler/mlir/stablehlo/transforms",
+      "tensorflow/compiler/mlir/tf2xla/transforms"
+    ],
+    "anchorHints": [
+      "transforms",
+      "tf2xla/transforms/",
+      "stablehlo/transforms/",
+      "legalize_tf_patterns.td",
+      "TF_CheckNumericsOp",
+      "generated_legalize_tf.inc",
+      "legalize_tf.cc",
+      "tf_stablehlo_pass.cc",
+      "tf2xla",
+      "TensorFlow",
+      "XLA",
+      "HLO",
+      "StableHLO",
+      "legalize_tf_patterns",
+      "generated_legalize_tf",
+      "legalize_tf",
+      "tf_stablehlo_pass",
+      "route-local-overview",
+      "tensorflow/compiler/mlir/",
+      "tensorflow/compiler/mlir/overview.md",
+      "tensorflow/compiler/overview.md",
+      "1cc65a53e0140d9c1a37071a50f702644c3ed4e0",
+      "tensorflow/",
+      "tf2xla/",
+      "stablehlo/",
+      "tensorflow_to_stablehlo/",
+      "lite/",
+      "quantization/",
+      "tfrt/",
+      "tosa/",
+      "tfr/",
+      "tools/",
+      "tensorflow/compiler/tf2xla/",
+      "tensorflow/compiler/jit/",
+      "third_party/xla/",
+      "tf.function",
+      "tensorflow/python/",
+      "BUILD",
+      "td",
+      "td_files",
+      "tf-opt",
+      "tf-reduce",
+      "tf_mlir_opt_main",
+      "passes",
+      "init_mlir",
+      "register_common_dialects",
+      "tf2xla/transforms/legalize_tf_patterns.td",
+      "stablehlo/transforms/legalize_tf_patterns.td"
+    ]
+  },
+  "fallback": {
+    "governingOverview": "tensorflow/compiler/mlir/overview.md",
+    "sidecarAbsence": "inferFromCoveredFiles"
+  }
+}

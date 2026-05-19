@@ -7,7 +7,7 @@
 | sourceRoute | `tensorflow/compiler/mlir/` |
 | onboardingRoute | `tensorflow/compiler/mlir/overview.md` |
 | parentOverview | [`tensorflow/compiler/overview.md`](../overview.md) |
-| lastUpdated | 2026-05-18T11:02 |
+| lastUpdated | 2026-05-19T03:08:25+02:00 |
 | lastVerifiedCommitHash | `1cc65a53e0140d9c1a37071a50f702644c3ed4e0` |
 | lastVerifiedCommitDate | 2026-05-15T06:40:10-07:00 |
 
@@ -18,6 +18,10 @@ pass registration, TF dialect transformations, TF-to-XLA bridge utilities,
 TF-to-StableHLO conversion, TFLite and quantization MLIR flows, and command-line
 tools used to exercise those passes. It is the compiler-facing bridge between
 TensorFlow graph/function representations and MLIR dialect conversion pipelines.
+
+## Hot Path Summary
+
+Use `tf2xla/transforms/` for TensorFlow dialect to XLA/HLO legalization and `stablehlo/transforms/` for StableHLO-oriented legalization/export. Strong anchors are `legalize_tf_patterns.td`, `TF_CheckNumericsOp`, `generated_legalize_tf.inc`, `legalize_tf.cc`, and `tf_stablehlo_pass.cc`.
 
 ## What Belongs Here
 
@@ -145,4 +149,5 @@ TensorFlow source for specific pass behavior.
 
 ## Update History
 
+- 2026-05-19T03:08:25+02:00: Added hot path summary for generated route-index discovery hints.
 - 2026-05-18T11:02: Added targeted MLIR route overview as existing-memory slice maintenance.

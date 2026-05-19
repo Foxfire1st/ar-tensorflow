@@ -7,7 +7,7 @@
 | sourceRoute | `tensorflow/lite/` |
 | onboardingRoute | `tensorflow/lite/overview.md` |
 | parentOverview | [`overview.md`](../../overview.md) |
-| lastUpdated | 2026-05-18T11:19:29+02:00 |
+| lastUpdated | 2026-05-19T03:08:25+02:00 |
 | lastVerifiedCommitHash | 2020b5919c5b66b8672438bed85d0ca88d434438 |
 | lastVerifiedCommitDate | 2026-05-16 |
 
@@ -16,6 +16,10 @@
 TensorFlow Lite is the mobile and embedded ML runtime. It loads `.tflite` FlatBuffer models, resolves operations via a pluggable `OpResolver`, schedules subgraph execution, and supports hardware acceleration through a delegate interface (GPU, NNAPI, XNNPACK, CoreML, Hexagon). A separate `micro/` implementation targets embedded systems with no heap allocation.
 
 Key design: minimal binary size, low latency, no runtime Protobuf dependency (FlatBuffer is zero-copy), memory arena pre-allocation, and delegate-based hardware offload.
+
+## Hot Path Summary
+
+Use this route for mobile or embedded inference behavior around `Interpreter`, `Subgraph`, `FlatBufferModel`, `OpResolver`, `Delegate`, `TfLiteTensor`, and `SimpleMemoryArena`. It is usually not the right route for TensorFlow graph execution or XLA/MLIR legalization questions.
 
 ## What Belongs Here
 
@@ -141,5 +145,6 @@ Candidates: `delegates/`, `micro/`
 
 ## Update History
 
+- 2026-05-19T03:08:25+02:00: Added hot path summary for generated route-index discovery hints.
 - 2026-05-18: Corrected parent overview link after reference-health check; source verification unchanged
 - 2026-05-17: Initial route-local overview from full-bootstrap

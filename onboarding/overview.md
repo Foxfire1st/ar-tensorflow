@@ -5,13 +5,17 @@
 | repository | tensorflow |
 | doc_type | `repo-overview` |
 | sourceRoute | `tensorflow/` |
-| lastUpdated | 2026-05-18T11:19:29+02:00 |
+| lastUpdated | 2026-05-19T03:08:25+02:00 |
 | lastVerifiedCommitHash | 575e43785c913c58644408a5ef5a7ff32c9026f5 |
 | lastVerifiedCommitDate | 2026-05-17T20:03:29-07:00 |
 
 ## What This Repo Is
 
 TensorFlow is an end-to-end open-source machine learning platform. It provides a comprehensive ecosystem for building, training, and deploying ML models across servers, edge devices, and browsers. The repo is the canonical implementation — a C++ runtime core with Python, C, C++, Java, Go, and JavaScript bindings.
+
+## Hot Path Summary
+
+Use `tensorflow/compiler/` for XLA, JIT, AOT, and MLIR compilation tasks; op-legalization questions usually narrow to `tensorflow/compiler/mlir/`, `tf2xla/transforms/legalize_tf_patterns.td`, or `stablehlo/transforms/legalize_tf_patterns.td`. Use `tensorflow/python/eager/def_function.py` for `tf.function(jit_compile=True)` frontend questions and `tensorflow/core/` for runtime execution.
 
 **Core responsibilities:**
 - Graph-based computation engine with eager and graph execution modes
@@ -186,5 +190,6 @@ No cross-repo dependencies configured in `settings.json`. The HLO IR and XLA bac
 
 ## Update History
 
+- 2026-05-19T03:08:25+02:00: Added hot path summary for generated route-index discovery hints.
 - 2026-05-18: Refreshed root overview after drift in `tensorflow/c/` and `tensorflow/core/`; updated local overview links and pluggable device/StreamExecutor context
 - 2026-05-17: Initial root overview from full-bootstrap scout phase

@@ -7,7 +7,7 @@
 | sourceRoute | `tensorflow/python/` |
 | onboardingRoute | `tensorflow/python/overview.md` |
 | parentOverview | [`overview.md`](../../overview.md) |
-| lastUpdated | 2026-05-18T11:19:29+02:00 |
+| lastUpdated | 2026-05-19T03:08:25+02:00 |
 | lastVerifiedCommitHash | 2020b5919c5b66b8672438bed85d0ca88d434438 |
 | lastVerifiedCommitDate | 2026-05-16 |
 
@@ -16,6 +16,10 @@
 The Python API layer is TensorFlow's primary user-facing surface. It exposes core computational abstractions — `Tensor`, `Variable`, `Graph`, `Operation`, `GradientTape` — alongside `tf.function` JIT compilation, the Keras high-level training API, distribution strategies, and data pipelines. In TF 2.x, **eager execution is the default**: operations execute immediately against C++ kernels, while `@tf.function` provides an opt-in pathway to graph mode for performance.
 
 Key responsibilities: eager and graph-mode tensor operations, automatic differentiation via `GradientTape`, Python→graph tracing via Autograph and `tf.function`, Keras model training, distributed training orchestration, SavedModel serialization, and `tf.data` pipelines.
+
+## Hot Path Summary
+
+Use this route for frontend API behavior around `tf.function`, eager execution, `GradientTape`, Keras training, and distribution strategies. For XLA-triggering frontend questions, start with `eager/def_function.py`, `jit_compile`, `ConcreteFunction`, and then cross-check compiler routes rather than searching all Python ops.
 
 ## What Belongs Here
 
@@ -172,5 +176,6 @@ Candidates: `keras/`, `distribute/`, `data/`
 
 ## Update History
 
+- 2026-05-19T03:08:25+02:00: Added hot path summary for generated route-index discovery hints.
 - 2026-05-18: Corrected parent overview link after reference-health check; source verification unchanged
 - 2026-05-17: Initial route-local overview from full-bootstrap

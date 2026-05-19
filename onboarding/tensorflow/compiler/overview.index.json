@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "kind": "agents-remember-route-index",
+  "repository": "tensorflow",
+  "route": "tensorflow/compiler",
+  "overview": "tensorflow/compiler/overview.md",
+  "index": "tensorflow/compiler/overview.index.json",
+  "sourceScope": [
+    "tensorflow/compiler/**"
+  ],
+  "childRoutes": [
+    {
+      "route": "tensorflow/compiler/mlir",
+      "overview": "tensorflow/compiler/mlir/overview.md",
+      "index": "tensorflow/compiler/mlir/overview.index.json"
+    }
+  ],
+  "coveredFiles": [
+    "tensorflow/compiler/aot/compile.h",
+    "tensorflow/compiler/jit/device_compiler.h",
+    "tensorflow/compiler/jit/mark_for_compilation_pass.h",
+    "tensorflow/compiler/jit/xla_device.h",
+    "tensorflow/compiler/tf2xla/graph_compiler.h",
+    "tensorflow/compiler/tf2xla/xla_compiler.h"
+  ],
+  "coverageCounts": {
+    "sourceFilesInScope": 3552,
+    "fileSidecars": 6,
+    "childRoutes": 1
+  },
+  "routingTerms": [
+    "aot",
+    "compilation",
+    "compile",
+    "compiler",
+    "device",
+    "device_compiler",
+    "for",
+    "graph",
+    "graph_compiler",
+    "jit",
+    "mark",
+    "mark_for_compilation_pass",
+    "mlir",
+    "pass",
+    "tensorflow",
+    "tf2xla",
+    "xla",
+    "xla_compiler",
+    "xla_device"
+  ],
+  "hotPath": {
+    "summary": "Use `tensorflow/compiler/mlir/` for MLIR op legalization and StableHLO/TF2XLA conversion; `legalize_tf_patterns.td`, `TF_CheckNumericsOp`, `XlaCompiler`, `XlaLaunch`, `MarkForCompilationPass`, and `tf.function(jit_compile=True)` are strong anchors. Use `tensorflow/compiler/jit/` for clustering/device compilation and `tensorflow/compiler/tf2xla/` for graph-to-HLO symbolic execution.",
+    "candidateHints": [
+      "tensorflow/compiler",
+      "tensorflow/compiler/mlir",
+      "tensorflow/compiler/aot",
+      "tensorflow/compiler/aot/compile.h",
+      "tensorflow/compiler/jit",
+      "tensorflow/compiler/jit/device_compiler.h",
+      "tensorflow/compiler/jit/mark_for_compilation_pass.h",
+      "tensorflow/compiler/jit/xla_device.h",
+      "tensorflow/compiler/tf2xla",
+      "tensorflow/compiler/tf2xla/graph_compiler.h",
+      "tensorflow/compiler/tf2xla/xla_compiler.h"
+    ],
+    "anchorHints": [
+      "compile.h",
+      "compile",
+      "device_compiler.h",
+      "device_compiler",
+      "mark_for_compilation_pass.h",
+      "mark_for_compilation_pass",
+      "xla_device.h",
+      "xla_device",
+      "graph_compiler.h",
+      "graph_compiler",
+      "xla_compiler.h",
+      "xla_compiler",
+      "mlir",
+      "tensorflow/compiler/mlir/",
+      "legalize_tf_patterns.td",
+      "TF_CheckNumericsOp",
+      "XlaCompiler",
+      "XlaLaunch",
+      "MarkForCompilationPass",
+      "tf.function(jit_compile=True",
+      "tensorflow/compiler/jit/",
+      "tensorflow/compiler/tf2xla/",
+      "tf.function",
+      "StableHLO",
+      "TF2XLA",
+      "legalize_tf_patterns",
+      "jit_compile",
+      "HLO",
+      "route-local-overview",
+      "tensorflow/compiler/",
+      "tensorflow/compiler/overview.md",
+      "overview.md",
+      "tfcompile",
+      "third_party/xla/xla/",
+      "jit/",
+      "tf2xla/",
+      "aot/",
+      "mlir/",
+      "tf2tensorrt/",
+      "plugin/",
+      "tests/",
+      "third_party/xla/xla/hlo/ir/",
+      "third_party/xla/xla/service/",
+      "third_party/xla/xla/client/",
+      "tensorflow/core/",
+      "tensorflow/python/eager/",
+      "tf2xla/xla_compiler.h",
+      "jit/device_compiler.h"
+    ]
+  },
+  "fallback": {
+    "governingOverview": "tensorflow/compiler/overview.md",
+    "sidecarAbsence": "inferFromCoveredFiles"
+  }
+}
