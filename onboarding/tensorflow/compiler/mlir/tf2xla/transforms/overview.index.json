@@ -10,15 +10,19 @@
   ],
   "childRoutes": [],
   "coveredFiles": [
+    "tensorflow/compiler/mlir/tf2xla/transforms/legalization_op_config.cc",
     "tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf_patterns.td"
   ],
   "coverageCounts": {
     "sourceFilesInScope": 32,
-    "fileSidecars": 1,
+    "fileSidecars": 2,
     "childRoutes": 0
   },
   "routingTerms": [
     "compiler",
+    "config",
+    "legalization",
+    "legalization_op_config",
     "legalize",
     "legalize_tf_patterns",
     "mlir",
@@ -31,13 +35,15 @@
     "summary": "Use this route for TensorFlow dialect to XLA/HLO legalization. Strong anchors are `legalize_tf_patterns.td`, `TF_CheckNumericsOp`, `legalization_op_config.cc`, `legalize_tf.cc`, `generated_legalize_tf.inc`, `xla_legalize_tf.cc`, and `tf2xla_rewriter.cc`.",
     "candidateHints": [
       "tensorflow/compiler/mlir/tf2xla/transforms",
+      "tensorflow/compiler/mlir/tf2xla/transforms/legalization_op_config.cc",
       "tensorflow/compiler/mlir/tf2xla/transforms/legalize_tf_patterns.td"
     ],
     "anchorHints": [
+      "legalization_op_config.cc",
+      "legalization_op_config",
       "legalize_tf_patterns.td",
       "legalize_tf_patterns",
       "TF_CheckNumericsOp",
-      "legalization_op_config.cc",
       "legalize_tf.cc",
       "generated_legalize_tf.inc",
       "xla_legalize_tf.cc",
@@ -45,7 +51,6 @@
       "TensorFlow",
       "XLA",
       "HLO",
-      "legalization_op_config",
       "legalize_tf",
       "generated_legalize_tf",
       "xla_legalize_tf",

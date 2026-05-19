@@ -20,18 +20,23 @@
       "index": "tensorflow/compiler/mlir/tf2xla/transforms/overview.index.json"
     }
   ],
-  "coveredFiles": [],
+  "coveredFiles": [
+    "tensorflow/compiler/mlir/tensorflow/ir/tf_generated_ops.td"
+  ],
   "coverageCounts": {
     "sourceFilesInScope": 2793,
-    "fileSidecars": 0,
+    "fileSidecars": 1,
     "childRoutes": 2
   },
   "routingTerms": [
     "compiler",
+    "generated",
     "mlir",
+    "ops",
     "stablehlo",
     "tensorflow",
     "tf2xla",
+    "tf_generated_ops",
     "transforms"
   ],
   "hotPath": {
@@ -39,9 +44,13 @@
     "candidateHints": [
       "tensorflow/compiler/mlir",
       "tensorflow/compiler/mlir/stablehlo/transforms",
-      "tensorflow/compiler/mlir/tf2xla/transforms"
+      "tensorflow/compiler/mlir/tf2xla/transforms",
+      "tensorflow/compiler/mlir/tensorflow/ir",
+      "tensorflow/compiler/mlir/tensorflow/ir/tf_generated_ops.td"
     ],
     "anchorHints": [
+      "tf_generated_ops.td",
+      "tf_generated_ops",
       "transforms",
       "tf2xla/transforms/",
       "stablehlo/transforms/",
@@ -87,9 +96,7 @@
       "tf_mlir_opt_main",
       "passes",
       "init_mlir",
-      "register_common_dialects",
-      "tf2xla/transforms/legalize_tf_patterns.td",
-      "stablehlo/transforms/legalize_tf_patterns.td"
+      "register_common_dialects"
     ]
   },
   "fallback": {

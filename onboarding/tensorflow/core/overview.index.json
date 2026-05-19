@@ -25,15 +25,21 @@
     "tensorflow/core/framework/rendezvous.h",
     "tensorflow/core/framework/tensor.h",
     "tensorflow/core/graph/graph.h",
+    "tensorflow/core/kernels/check_numerics_op.cc",
+    "tensorflow/core/ops/array_ops.cc",
     "tensorflow/core/public/session.h"
   ],
   "coverageCounts": {
     "sourceFilesInScope": 12087,
-    "fileSidecars": 16,
+    "fileSidecars": 18,
     "childRoutes": 0
   },
   "routingTerms": [
+    "array",
+    "array_ops",
     "base",
+    "check",
+    "check_numerics_op",
     "common",
     "common_runtime",
     "core",
@@ -47,7 +53,10 @@
     "function",
     "graph",
     "kernel",
+    "kernels",
+    "numerics",
     "op_kernel",
+    "ops",
     "placer",
     "pluggable",
     "pluggable_device",
@@ -82,8 +91,10 @@
       "tensorflow/core/framework/tensor.h",
       "tensorflow/core/graph",
       "tensorflow/core/graph/graph.h",
-      "tensorflow/core/public",
-      "tensorflow/core/public/session.h"
+      "tensorflow/core/kernels",
+      "tensorflow/core/kernels/check_numerics_op.cc",
+      "tensorflow/core/ops",
+      "tensorflow/core/ops/array_ops.cc"
     ],
     "anchorHints": [
       "direct_session.h",
@@ -114,6 +125,10 @@
       "tensor",
       "graph.h",
       "graph",
+      "check_numerics_op.cc",
+      "check_numerics_op",
+      "array_ops.cc",
+      "array_ops",
       "session.h",
       "session",
       "DirectSession",
@@ -129,11 +144,7 @@
       "graph/",
       "common_runtime/",
       "common_runtime/pluggable_device/",
-      "kernels/",
-      "ops/",
-      "distributed_runtime/",
-      "platform/",
-      "lib/"
+      "kernels/"
     ]
   },
   "fallback": {
